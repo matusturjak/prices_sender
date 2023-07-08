@@ -1,0 +1,112 @@
+spring:
+  #queue
+  rabbitmq:
+    port: 5672
+    queues:
+      itemsQueueName: "items"
+  #mail
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: username
+    password: password
+    protocol: smtp
+    properties.mail:
+      smtp.auth: true
+      smtp.starttls.enable: true
+      debug: true
+  #DB
+  datasource:
+    url: jdbc:postgresql://localhost:5432/tesco
+    username: admin
+    password: example
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      database: tesco
+  jpa:
+    hibernate.ddl-auto: update
+    show-sql: true
+  #Quartz
+  quartz:
+    job-store-type: jdbc
+    jdbc.initialize-schema: always
+    wait-for-jobs-to-complete-on-shutdown: true
+    properties.org.quartz:
+      jobStore.driverDelegateClass: org.quartz.impl.jdbcjobstore.PostgreSQLDelegate
+      jobStore.isClustered: true
+#      jobStore.tablePrefix: tesco.qrtz_
+      scheduler.instanceId: AUTO
+quartz:
+  tesco-promotions-download-cron: 0 20 20 ? * * *
+  send-emails-cron: 0 0 3 ? * * *
+
+tesco:
+  promotions:
+    base-url: "https://nakup.itesco.cz/groceries/cs-CZ/promotions/all"
+    superdepartments:
+      - id: 16931
+        name: trvanlivePotraviny
+        departments:
+          - id: 20278
+            name: sladkosti_cukrovinky
+          - id: 16970
+            name: instantne_jedla_polievky
+          - id: 24616
+            name: dresingy_omacky
+          - id: 20282
+            name: sol_cukor
+          - id: 16979
+            name: konzervovane_potraviny
+          - id: 17131
+            name: ryza_cestoviny_strukoviny
+          - id: 25591
+            name: dzem_med_ovocne_vyrobky
+          - id: 18693
+            name: korenie_dochucovadla
+          - id: 17146
+            name: slane_snacky
+          - id: 17056
+            name: oleje_octy
+          - id: 18687
+            name: cerealie_musli
+          - id: 18700
+            name: prisady_varenie_pecenie
+          - id: 17051
+            name: muka
+      - id: 15767
+        name: domov_a_zabava
+        departments:
+          - id: 19964
+            name: potreby_pro_domacnost
+          - id: 25245
+            name: hrbitovni_svicky
+          - id: 20047
+            name: hracky
+          - id: 19897
+            name: elektronika_a_prislusenstvi
+          - id: 18817
+            name: tesco_mobile
+          - id: 23508
+            name: domaci_spotrebice
+  shop:
+    base-url: "https://nakup.itesco.cz/groceries/cs-CZ/shop/"
+    superdepartments:
+      - "podzimni-sbirka-potravin"
+      - "pripravy-na-vanoce"
+      - "ovoce-a-zelenina"
+      - "mlecne-vyrobky-a-vejce-a-mlecne-alternativy"
+      - "pekarna-a-cukrarna"
+      - "maso-ryby-a-lahudky"
+      - "trvanlive-potraviny"
+      - "specialni-a-zdrava-vyziva"
+      - "mrazene-potraviny"
+      - "napoje"
+      - "alkoholicke-napoje"
+      - "pece-o-domacnost"
+      - "drogerie-a-kosmetika"
+      - "pece-o-deti"
+      - "chovatelske-potreby"
+      - "domov-a-zabava"
+      - "obleceni-a-moda"
