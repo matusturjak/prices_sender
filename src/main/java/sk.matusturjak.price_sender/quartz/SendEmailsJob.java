@@ -1,5 +1,6 @@
 package sk.matusturjak.price_sender.quartz;
 
+import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.quartz.Job;
 import org.quartz.JobExecutionContext;
@@ -9,10 +10,10 @@ import org.springframework.stereotype.Component;
 import sk.matusturjak.price_sender.service.MailService;
 
 @Slf4j
+@AllArgsConstructor
 @Component
 public class SendEmailsJob implements Job {
 
-    @Autowired
     private MailService mailService;
 
     @Override

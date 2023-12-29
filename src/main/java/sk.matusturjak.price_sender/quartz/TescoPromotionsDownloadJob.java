@@ -1,5 +1,6 @@
 package sk.matusturjak.price_sender.quartz;
 
+import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.quartz.Job;
 import org.quartz.JobExecutionContext;
@@ -12,12 +13,10 @@ import sk.matusturjak.price_sender.service.TescoParser;
 import java.io.IOException;
 
 @Slf4j
+@AllArgsConstructor
 @Component
 public class TescoPromotionsDownloadJob implements Job {
-    @Autowired
     private TescoParser tescoParser;
-    @Autowired
-    private ItemService itemService;
 
     @Override
     public void execute(JobExecutionContext jobExecutionContext) throws JobExecutionException {

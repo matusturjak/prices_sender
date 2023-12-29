@@ -4,7 +4,10 @@ import org.bson.types.ObjectId;
 import sk.matusturjak.price_sender.dto.ItemDto;
 import sk.matusturjak.price_sender.model.db.Item;
 
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class ItemMapper {
@@ -48,5 +51,20 @@ public class ItemMapper {
         item.setDepartment(itemDto.getDepartment());
 
         return item;
+    }
+
+    public static Map<String, Object> itemDtoToMap(ItemDto itemDto) {
+        Map<String, Object> map = new HashMap<>();
+
+        map.put("name", itemDto.getName());
+        map.put("normalCost", itemDto.getNormalCost());
+        map.put("actualCost", itemDto.getActualCost());
+        map.put("validTo", itemDto.getValidTo());
+        map.put("pictureURL", itemDto.getPictureURL());
+        map.put("superDepartment", itemDto.getSuperDepartment());
+        map.put("department", itemDto.getDepartment());
+        map.put("modifiedOn", new Date());
+
+        return map;
     }
 }

@@ -1,5 +1,6 @@
 package sk.matusturjak.price_sender.service;
 
+import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -10,20 +11,12 @@ import sk.matusturjak.price_sender.repository.ItemRepository;
 import sk.matusturjak.price_sender.repository.UserRepository;
 
 @Slf4j
+@AllArgsConstructor
 @Service
 public class MailService {
 
     private final MailProperties mailProperties;
     private final JavaMailSender javaMailSender;
-    private final UserRepository userRepository;
-    private final ItemRepository itemRepository;
-
-    public MailService(MailProperties mailProperties, JavaMailSender javaMailSender, UserRepository userRepository, ItemRepository itemRepository) {
-        this.mailProperties = mailProperties;
-        this.javaMailSender = javaMailSender;
-        this.userRepository = userRepository;
-        this.itemRepository = itemRepository;
-    }
 
     private void sendEmail(MailDetails details) {
         SimpleMailMessage mailMessage = new SimpleMailMessage();

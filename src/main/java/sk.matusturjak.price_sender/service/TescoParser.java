@@ -1,5 +1,6 @@
 package sk.matusturjak.price_sender.service;
 
+import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.jsoup.Connection;
@@ -24,18 +25,13 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 @Slf4j
+@AllArgsConstructor
 @Component
 public class TescoParser {
 
     private final TescoPromotionsProperties tescoPromotionsProperties;
     private final TescoShopProperties tescoShopProperties;
     private final RabbitTemplate rabbitTemplate;
-
-    public TescoParser(TescoPromotionsProperties tescoPromotionsProperties, TescoShopProperties tescoShopProperties, RabbitTemplate rabbitTemplate) {
-        this.tescoPromotionsProperties = tescoPromotionsProperties;
-        this.tescoShopProperties = tescoShopProperties;
-        this.rabbitTemplate = rabbitTemplate;
-    }
 
     public void getItemsWithClubcard() throws IOException {
 
